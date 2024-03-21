@@ -49,28 +49,28 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
     int example3();
 
     /**
-     * TODO: Retrieve all pets by their species.
+     * DONE: Retrieve all pets by their species.
      * Replace 'FROM Pet' with the necessary query and add Param annotations. 'FROM Pet' is present to allow the app
      * to initially compile.
      * @param species
      */
-    @Query("FROM Pet")
+    @Query("FROM Pet as p where p.species = :species")
     List<Pet> lab1(@Param("species") String species);
 
     /**
-     * TODO: Retrieve all pets by either their name OR their age.
+     * DONE: Retrieve all pets by either their name OR their age.
      * Replace 'FROM Pet' with the necessary query and add Param annotations. 'FROM Pet' is present to allow the app
      * to initially compile.
      */
-    @Query("FROM Pet")
+    @Query("FROM Pet as p where p.name = :name OR p.age = :age")
     List<Pet> lab2(@Param("name") String name, @Param("age") int age);
 
     /**
-     * TODO: Retrieve the AVERAGE age of all pets.
+     * DONE: Retrieve the AVERAGE age of all pets.
      * Replace 'FROM Pet' with the necessary query and add Param annotations. 'FROM Pet' is present to allow the app
      * to initially compile.
      */
-    @Query("FROM Pet")
+    @Query("select avg(age) FROM Pet")
     double lab3();
 
 }
